@@ -1,0 +1,61 @@
+<div class="container">
+  <!-- Content here -->
+  <div class="row">
+    <div class="col-md">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3 class="">PwC Mobile Device Management Admin</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md">
+      <h4>Reservations:</h4>
+    </div>
+  </div>
+  <div class="row no-margin-top">
+    <div class="col-md">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Device Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Start time</th>
+            <th scope="col">End time</th>
+            <th scope="col">Previous Username</th>
+            <th scope="col">Active</th>
+            <th scope="col">Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let reservation of reservations; index as i">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{reservation.deviceName}}</td>
+              <td>{{reservation.username}}</td>
+              <td>{{reservation.startTime | date}}</td>
+              <td>{{reservation.endTime | date}}</td>
+              <td>{{reservation.previousUsername ? reservation.previousUsername : 'None'}}</td>
+              <td>{{reservation.active ? 'Yes' : 'No'}}</td>
+              <td>{{reservation.timestamp | date}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/RegisteredDevices">Home</button>
+    </div>
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/RegisteredUsers">All Users</button>
+    </div>
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/ActiveReports">Active Reports</button>
+    </div>
+  </div>
+</div>

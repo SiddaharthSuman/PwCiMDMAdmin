@@ -1,0 +1,87 @@
+<div class="container">
+  <!-- Content here -->
+  <div class="row">
+    <div class="col-md">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3 class="">PwC Mobile Device Management Admin</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md">
+      <h4>Devices Present:</h4>
+    </div>
+  </div>
+  <div class="row no-margin-top">
+    <div class="col-md">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Device Name</th>
+            <th scope="col">Registered</th>
+            <th scope="col">Date</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let device of devices; index as i">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{device.deviceName}}</td>
+              <td>{{device.verified ? 'Yes' : 'No'}}</td>
+              <td>{{device.dateAdded | date}}</td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="showExtraData(i)">Details</button>
+              </td>
+            </tr>
+            <tr class="collapse" id="collapseRow{{i}}">
+              <td></td>
+              <td colspan="4">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Device Id</th>
+                      <th>Device Model</th>
+                      <th>Device Manufacturer</th>
+                      <th>Device Serial/IMEI</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{device.deviceId}}</td>
+                      <td>{{device.deviceModel}}</td>
+                      <td>{{device.deviceManufacturer}}</td>
+                      <td>
+                        <input type="text" [value]="device.deviceSerial" #deviceSerial>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">
+                        <button class="btn btn-primary btn-sm" [disabled]="registering" (click)="registerDevice(i, deviceSerial.value)">Register</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/RegisteredUsers">All Users</button>
+    </div>
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/ReservedDevices">All Reservations</button>
+    </div>
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/ActiveReports">Active Reports</button>
+    </div>
+  </div>
+</div>

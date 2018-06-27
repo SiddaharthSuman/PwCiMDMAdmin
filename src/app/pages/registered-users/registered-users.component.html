@@ -1,0 +1,63 @@
+<div class="container">
+  <!-- Content here -->
+  <div class="row">
+    <div class="col-md">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3 class="">PwC Mobile Device Management Admin</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md">
+      <h4>All Users:</h4>
+    </div>
+  </div>
+  <div class="row no-margin-top">
+    <div class="col-md">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Device Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Device Name</th>
+            <th scope="col">Device Model</th>
+            <th scope="col">Device Manufacturer</th>
+            <th scope="col">Active</th>
+            <th scope="col">Date Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let user of users; index as i">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{user.deviceId}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.deviceName}}</td>
+              <td>{{user.deviceModel}}</td>
+              <td>{{user.deviceManufacturer}}</td>
+              <td style="text-align: center;">
+                <input type="checkbox" (change)="markUnmarkUser(user.id)" [(ngModel)]="user.active">
+              </td>
+              <td>{{user.dateAdded | date}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/RegisteredDevices">Home</button>
+    </div>
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/ReservedDevices">All Reservations</button>
+    </div>
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/ActiveReports">Active Reports</button>
+    </div>
+  </div>
+</div>

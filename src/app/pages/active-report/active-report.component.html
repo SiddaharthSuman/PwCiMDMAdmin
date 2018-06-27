@@ -1,0 +1,53 @@
+<div class="container">
+  <!-- Content here -->
+  <div class="row">
+    <div class="col-md">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3 class="">PwC Mobile Device Management Admin</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md">
+      <h4>Device Status:</h4>
+    </div>
+  </div>
+  <div class="row no-margin-top">
+    <div class="col-md">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Device Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let report of reports; index as i">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{report.deviceName}}</td>
+              <td><pre>{{report.status ? report.status : 'Device is reserved'}}</pre></td>
+              <td>{{report.timestamp ? (report.timestamp | date:'medium') : 'N/A'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/RegisteredDevices">Home</button>
+    </div>
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/RegisteredUsers">All Users</button>
+    </div>
+    <div class="col-md">
+      <button class="btn btn-primary" routerLink="/ReservedDevices">All Reservations</button>
+    </div>
+  </div>
+</div>
