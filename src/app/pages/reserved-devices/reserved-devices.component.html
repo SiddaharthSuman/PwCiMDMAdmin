@@ -24,11 +24,11 @@
               <td>{{i+1}}</td>
               <td>{{reservation.deviceName}}</td>
               <td>{{reservation.username}}</td>
-              <td>{{reservation.startTime | date}}</td>
-              <td>{{reservation.endTime | date}}</td>
+              <td>{{reservation.startTime | date:'medium'}}</td>
+              <td>{{reservation.endTime | date:'medium'}}</td>
               <td>{{reservation.previousUsername ? reservation.previousUsername : 'None'}}</td>
               <td>{{reservation.active ? 'Yes' : 'No'}}</td>
-              <td>{{reservation.timestamp | date}}</td>
+              <td>{{reservation.timestamp | date:'medium'}}</td>
             </tr>
           </ng-container>
         </tbody>

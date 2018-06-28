@@ -30,7 +30,7 @@
             <td style="text-align: center;">
               <input type="checkbox" (change)="markUnmarkUser(user.id)" [(ngModel)]="user.active">
             </td>
-            <td>{{user.dateAdded | date}}</td>
+            <td>{{user.dateAdded | date:'medium'}}</td>
           </tr>
         </ng-container>
       </tbody>

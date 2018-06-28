@@ -21,7 +21,7 @@
             <td>{{i+1}}</td>
             <td>{{device.deviceName}}</td>
             <td>{{device.verified ? 'Yes' : 'No'}}</td>
-            <td>{{device.dateAdded | date}}</td>
+            <td>{{device.dateAdded | date:'medium'}}</td>
             <td>
               <button class="btn btn-primary btn-sm" (click)="showExtraData(i)">Details</button>
             </td>
