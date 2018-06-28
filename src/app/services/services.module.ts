@@ -4,6 +4,7 @@ import { DeviceRegistrationService } from './device-registration/device-registra
 import { UserRegistrationService } from './user-registration/user-registration.service';
 import { DeviceReservationService } from './device-reservation/device-reservation.service';
 import { ReportService } from './report/report.service';
+import { SiteSettingsService } from './site-settings/site-settings.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ReportService } from './report/report.service';
     DeviceRegistrationService,
     UserRegistrationService,
     DeviceReservationService,
-    ReportService
+    ReportService,
+    SiteSettingsService
   ]
 })
 export class ServicesModule { }

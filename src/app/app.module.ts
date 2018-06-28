@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { RegisteredUsersComponent } from './pages/registered-users/registered-users.component';
 import { ReservedDevicesComponent } from './pages/reserved-devices/reserved-devices.component';
 import { ActiveReportComponent } from './pages/active-report/active-report.component';
+import { SiteSettingsComponent } from './pages/site-settings/site-settings.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ActiveReportComponent } from './pages/active-report/active-report.compo
     PageNotFoundComponent,
     RegisteredUsersComponent,
     ReservedDevicesComponent,
-    ActiveReportComponent
+    ActiveReportComponent,
+    SiteSettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<div class="row" style="margin-top: 1rem;">
+  <div class="col-md">
+    <h4>Settings:</h4>
+  </div>
+</div>
+<form>
+  <div class="form-group">
+    <label for="timeIntervalBox">Time interval</label>
+    <input type="timeInterval" class="form-control" id="timeIntervalBox" aria-describedby="timeIntervalHelp" placeholder="Interval (in seconds)" [value]="settings?.timeout" #timeIntervalInput>
+    <small id="timeIntervalHelp" class="form-text text-muted">Time interval between each series of device locks</small>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" [checked]="settings?.shutdown" #shutdownInput>
+    <label class="form-check-label" for="exampleCheck1" aria-describedby="shutdownHelp">Shutdown server</label>
+    <small id="shutdownHelp" class="form-text text-muted">Enabling this will shutdown the server from any further locking<br/>Can be used in case of maintenance or malfunction</small>
+  </div>
+  <button class="btn btn-primary" (click)="saveSettings(timeIntervalInput.value, shutdownInput.checked)" [disabled]="saving">Save Settings</button>
+</form>
