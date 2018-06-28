@@ -10,7 +10,7 @@ export class SiteSettingsService {
   readonly METHOD_GET_SITE_SETTINGS = 'getSiteSettings';
   readonly METHOD_SAVE_SITE_SETTINGS = 'saveSiteSettings';
 
-  lookupURL = 'http://pwcimdm-server.000webhostapp.com/admin/admin.php';
+  lookupURL = 'https://pwcimdm-server.000webhostapp.com/admin/admin.php';
 
   constructor(private http: HttpClient) { }
 
