@@ -10,6 +10,7 @@ import { UserModel } from '../../models/user.model';
 export class RegisteredUsersComponent implements OnInit {
   markedUsers: number[] = [];
   users: UserModel[];
+  isSaving:boolean;
 
   constructor(private service: UserRegistrationService) { }
 
@@ -37,6 +38,7 @@ export class RegisteredUsersComponent implements OnInit {
   }
 
   saveChanges() {
+    this.isSaving = true;
     // Check if the list is empty
     if (this.markedUsers.length === 0) {
       console.log('There are no changes to save');
@@ -46,6 +48,7 @@ export class RegisteredUsersComponent implements OnInit {
       });
       this.service.saveModifiedUsers(changedUsers).then(response => {
         console.log(response);
+        this.isSaving = false;
       });
     }
   }
