@@ -42,6 +42,7 @@ export class RegisteredUsersComponent implements OnInit {
     // Check if the list is empty
     if (this.markedUsers.length === 0) {
       console.log('There are no changes to save');
+      this.isSaving = false;
     } else {
       const changedUsers = this.users.filter(user => {
         return this.markedUsers.indexOf(user.id) >= 0;
