@@ -20,7 +20,7 @@
             <td>{{i+1}}</td>
             <td>{{report.deviceName}}</td>
             <td>
-              <pre>{{checkActiveReservationsForDevice(report.id) ? 'Device is reserved' : 'Device is not reserved'}}</pre>
+              <pre>{{checkActiveReservationsForDevice(report.id) ? 'Device is reserved' : report.status ? report.status : 'Device is not reserved'}}</pre>
             </td>
             <td>{{report.timestamp ? (report.timestamp | date:'medium') : 'N/A'}}</td>
           </tr>
