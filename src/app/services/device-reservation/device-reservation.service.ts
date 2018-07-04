@@ -7,6 +7,7 @@ import { ReservationModel } from '../../models/reservation.model';
 export class DeviceReservationService {
 
   readonly METHOD_GET_ALL_RESERVATIONS = 'getAllReservations';
+  readonly METHOD_GET_ALL_ACTIVE_RESERVATIONS = 'getAllActiveReservations';
 
   lookupURL = 'https://pwcimdm-server.000webhostapp.com/admin/reservation.php';
   // lookupURL = 'http://localhost/PwCiMDMServer/admin/admin.php';
@@ -15,6 +16,11 @@ export class DeviceReservationService {
 
   getAllReservations(): Promise<ReservationModel[]> {
     const body = { 'method': this.METHOD_GET_ALL_RESERVATIONS };
+    return this.http.post<ReservationModel[]>(this.lookupURL, JSON.stringify(body)).toPromise();
+  }
+
+  getAllActiveReservations(): Promise<ReservationModel[]> {
+    const body = { 'method': this.METHOD_GET_ALL_ACTIVE_RESERVATIONS };
     return this.http.post<ReservationModel[]>(this.lookupURL, JSON.stringify(body)).toPromise();
   }
 }
