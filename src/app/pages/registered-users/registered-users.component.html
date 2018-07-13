@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <h4>All Users:</h4>
+    <h4>All Mobile Users:</h4>
   </div>
 </div>
 <div class="row no-margin-top">
@@ -15,6 +15,7 @@
           <th scope="col">Device Model</th>
           <th scope="col">Device Manufacturer</th>
           <th scope="col">Active</th>
+          <th scope="col">Web User</th>
           <th scope="col">Date Added</th>
         </tr>
       </thead>
@@ -30,6 +31,9 @@
             <td style="text-align: center;">
               <input type="checkbox" (change)="markUnmarkUser(user.id)" [(ngModel)]="user.active">
             </td>
+            <td style="text-align: center;">
+              <input type="checkbox" class="isWebUser-{{user.id}}" (change)="linkWebUser(user)" [(ngModel)]="user.isWebUser">
+            </td>
             <td>{{user.dateAdded | date:'medium'}}</td>
           </tr>
         </ng-container>
@@ -38,7 +42,47 @@
   </div>
 </div>
 <div class="row">
-<div class="col">
-<button class="btn btn-primary" (click)="saveChanges()" [disabled]="isSaving">Save</button>
+  <div class="col">
+    <button class="btn btn-primary" (click)="saveChanges()" [disabled]="isSaving">Save</button>
+  </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please choose the web user to link this mobile user to:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <dir class="col">
+            <p>{{selectedMobileUser?.username}}</p>
+          </dir>
+          <dir class="col">
+            <!-- Example single danger button -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item">Action</a>
+                <a class="dropdown-item">Another action</a>
+                <a class="dropdown-item">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">Separated link</a>
+              </div>
+            </div>
+          </dir>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="linkUser()">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

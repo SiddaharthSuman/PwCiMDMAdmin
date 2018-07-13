@@ -6,5 +6,6 @@ export class UserModel {
     deviceModel: string;
     deviceManufacturer: string;
     active: boolean;
-    dateAdded: Date;
+    isWebUser: boolean;
+    timestamp: Date;
 }

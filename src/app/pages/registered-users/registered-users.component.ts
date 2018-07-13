@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../../services/user-registration/user-registration.service';
 import { UserModel } from '../../models/user.model';
 
+declare var $: any;
+
 @Component({
   selector: 'app-registered-users',
   templateUrl: './registered-users.component.html',
@@ -10,7 +12,9 @@ import { UserModel } from '../../models/user.model';
 export class RegisteredUsersComponent implements OnInit {
   markedUsers: number[] = [];
   users: UserModel[];
-  isSaving:boolean;
+  isSaving: boolean;
+  selectedMobileUser: UserModel;
+  webUsers: any;
 
   constructor(private service: UserRegistrationService) { }
 
@@ -22,6 +26,11 @@ export class RegisteredUsersComponent implements OnInit {
       },
       error => console.log(error)
     );
+
+    this.service.getAllWebUsers().then(allWebUsers => {
+      this.webUsers = allWebUsers;
+      console.log(this.webUsers);
+    }, error => console.log(error));
   }
 
   markUnmarkUser(index: number) {
@@ -52,6 +61,19 @@ export class RegisteredUsersComponent implements OnInit {
         this.isSaving = false;
       });
     }
+  }
+
+  linkWebUser(user: UserModel) {
+    this.selectedMobileUser = user;
+    // change css to show modal
+    $('#exampleModal').modal('show');
+    $('#exampleModal').on('hidden.bs.modal', (e) =>
+      (<HTMLInputElement>document.getElementsByClassName(`isWebUser-${user.id}`)[0]).checked = false
+    );
+  }
+
+  linkUser() {
+
   }
 
 }
