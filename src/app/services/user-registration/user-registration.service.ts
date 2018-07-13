@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../../models/user.model';
+import { environment } from '../../../environments/environment';
 @Injectable()
 export class UserRegistrationService {
 
   readonly METHOD_GET_ALL_USERS = 'getAllUsers';
   readonly METHOD_SAVE_USER_CHANGES = 'saveUserChanges';
 
-  lookupURL = 'https://pwcimdm-server.000webhostapp.com/admin/admin.php';
+  lookupURL = environment.domain + '/admin/admin.php';
   // lookupURL = 'http://localhost/PwCiMDMServer/admin/admin.php';
 
   constructor(private http: HttpClient) { }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Device } from '../../models/device.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class DeviceRegistrationService {
@@ -8,7 +9,7 @@ export class DeviceRegistrationService {
   readonly METHOD_GET_ALL_DEVICES = 'getAllDevices';
   readonly METHOD_REGISTER_DEVICE = 'registerDevice';
 
-  lookupURL = 'https://pwcimdm-server.000webhostapp.com/admin/admin.php';
+  lookupURL = environment.domain + '/admin/admin.php';
   // lookupURL = 'http://localhost/PwCiMDMServer/admin/admin.php';
 
   constructor(private http: HttpClient) { }

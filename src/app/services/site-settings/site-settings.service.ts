@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Device } from '../../models/device.model';
 import { ReservationModel } from '../../models/reservation.model';
 import { SiteSettingsModel } from '../../models/site-settings.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SiteSettingsService {
@@ -10,7 +11,7 @@ export class SiteSettingsService {
   readonly METHOD_GET_SITE_SETTINGS = 'getSiteSettings';
   readonly METHOD_SAVE_SITE_SETTINGS = 'saveSiteSettings';
 
-  lookupURL = 'https://pwcimdm-server.000webhostapp.com/admin/admin.php';
+  lookupURL = environment.domain + '/admin/admin.php';
 
   constructor(private http: HttpClient) { }
 

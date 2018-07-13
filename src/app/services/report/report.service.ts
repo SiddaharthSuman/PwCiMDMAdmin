@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Device } from '../../models/device.model';
 import { ReservationModel } from '../../models/reservation.model';
 import { ActiveReportModel } from '../../models/active-report.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ReportService {
 
   readonly METHOD_GET_ACTIVE_REPORTS = 'getLatestReport';
 
-  lookupURL = 'https://pwcimdm-server.000webhostapp.com/admin/admin.php';
+  lookupURL = environment.domain + '/admin/admin.php';
 
   constructor(private http: HttpClient) { }
 
