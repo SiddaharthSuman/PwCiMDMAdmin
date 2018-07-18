@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../../services/user-registration/user-registration.service';
 import { UserModel } from '../../models/user.model';
+import { WebUserModel } from '../../models/web-user.model';
 
 declare var $: any;
 
@@ -14,7 +15,7 @@ export class RegisteredUsersComponent implements OnInit {
   users: UserModel[];
   isSaving: boolean;
   selectedMobileUser: UserModel;
-  webUsers: any;
+  webUsers: WebUserModel[];
 
   constructor(private service: UserRegistrationService) { }
 
