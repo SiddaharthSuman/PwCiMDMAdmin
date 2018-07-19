@@ -47,7 +47,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Web Linking Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -58,25 +58,74 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">
-          <dir class="col">
+        <div class="row align-items-center">
+          <div class="col">
             <p>{{selectedMobileUser?.username}}</p>
-          </dir>
-          <div class="form-group">
-            <label for="sel1">Select list:</label>
-            <select class="form-control" id="sel1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="sel1">Select user:</label>
+              <select class="form-control" id="sel1" (change)="selectWebUser(webUserDD.value)" #webUserDD>
+                <option value="-1">Select...</option>
+                <option *ngFor="let webUser of webUsers" value="{{webUser.id}}">{{webUser.username}}</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="linkUser()">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="linkUser()" [disabled]="!userToBeLinked">Save changes</button>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h4>All Web Users:</h4>
+  </div>
+</div>
+<div class="row no-margin-top">
+  <div class="col">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Device Id</th>
+          <th scope="col">Username</th>
+          <th scope="col">Device Name</th>
+          <th scope="col">Device Model</th>
+          <th scope="col">Device Manufacturer</th>
+          <th scope="col">Active</th>
+          <th scope="col">Web User</th>
+          <th scope="col">Date Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let user of users; index as i">
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{user.deviceId}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.deviceName}}</td>
+            <td>{{user.deviceModel}}</td>
+            <td>{{user.deviceManufacturer}}</td>
+            <td style="text-align: center;">
+              <input type="checkbox" (change)="markUnmarkUser(user.id)" [(ngModel)]="user.active">
+            </td>
+            <td style="text-align: center;">
+              <input type="checkbox" class="isWebUser-{{user.id}}" (change)="linkWebUser(user)" [(ngModel)]="user.isWebUser">
+            </td>
+            <td>{{user.dateAdded | date:'medium'}}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" (click)="saveChanges()" [disabled]="isSaving">Save</button>
   </div>
 </div>

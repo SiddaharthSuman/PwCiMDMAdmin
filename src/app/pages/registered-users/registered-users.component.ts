@@ -16,6 +16,8 @@ export class RegisteredUsersComponent implements OnInit {
   isSaving: boolean;
   selectedMobileUser: UserModel;
   webUsers: WebUserModel[];
+  userToBeLinked: WebUserModel;
+  linkingSuccessful: boolean;
 
   constructor(private service: UserRegistrationService) { }
 
@@ -67,14 +69,31 @@ export class RegisteredUsersComponent implements OnInit {
   linkWebUser(user: UserModel) {
     this.selectedMobileUser = user;
     // change css to show modal
+
+    // we should check for negative case but ngModel changes the checkmark before this is called
     $('#exampleModal').modal('show');
-    $('#exampleModal').on('hidden.bs.modal', (e) =>
-      (<HTMLInputElement>document.getElementsByClassName(`isWebUser-${user.id}`)[0]).checked = false
-    );
+    $('#exampleModal').on('hidden.bs.modal', (e) => {
+      (<HTMLInputElement>document.getElementsByClassName(`isWebUser-${user.id}`)[0]).checked = false;
+    });
   }
 
   linkUser() {
+    this.service.linkMobileAndWebUser(this.selectedMobileUser, this.userToBeLinked).then(response => {
+      try {
+        const serviceData = JSON.parse(response);
+        this.users = serviceData['muser'];
+        this.webUsers = serviceData['wuser'];
+      } catch {
+        alert('There was an issue while linking the user!');
+        console.log(response);
+      }
 
+      $('#exampleModal').modal('hide');
+    });
+  }
+
+  selectWebUser(index: number) {
+    this.userToBeLinked = this.webUsers.find((user) => user.id === index);
   }
 
 }
