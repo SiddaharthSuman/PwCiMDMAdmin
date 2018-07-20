@@ -3,5 +3,5 @@ export class WebUserModel {
     username: string;
     linkedUserId: number;
     active: boolean;
-    dateAdded: Date;
+    timestamp: Date;
 }

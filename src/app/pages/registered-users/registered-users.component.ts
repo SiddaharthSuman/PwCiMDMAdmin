@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { UserRegistrationService } from '../../services/user-registration/user-registration.service';
 import { UserModel } from '../../models/user.model';
 import { WebUserModel } from '../../models/web-user.model';
@@ -18,6 +19,7 @@ export class RegisteredUsersComponent implements OnInit {
   webUsers: WebUserModel[];
   userToBeLinked: WebUserModel;
   linkingSuccessful: boolean;
+  faPlus = faPlus;
 
   constructor(private service: UserRegistrationService) { }
 
@@ -70,11 +72,14 @@ export class RegisteredUsersComponent implements OnInit {
     this.selectedMobileUser = user;
     // change css to show modal
 
-    // we should check for negative case but ngModel changes the checkmark before this is called
-    $('#exampleModal').modal('show');
-    $('#exampleModal').on('hidden.bs.modal', (e) => {
-      (<HTMLInputElement>document.getElementsByClassName(`isWebUser-${user.id}`)[0]).checked = false;
-    });
+    if ((<HTMLInputElement>document.getElementsByClassName(`isWebUser-${user.id}`)[0]).checked) {
+      $('#exampleModal').modal('show');
+      $('#exampleModal').on('hide.bs.modal', (e) => {
+        (<HTMLInputElement>document.getElementsByClassName(`isWebUser-${user.id}`)[0]).checked = false;
+      });
+    } else {
+      console.log('Dont show');
+    }
   }
 
   linkUser() {
